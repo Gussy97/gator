@@ -23,8 +23,9 @@ func handlerFeeds(s *state, cmd command) error {
 }
 
 func printFeed(feed database.Feed, feedUsername string) {
-	fmt.Printf("ID:       %v\n", feed.ID)
-	fmt.Printf("Name:     %s\n", feed.Name)
-	fmt.Printf("URL:      %s\n", feed.Url)
-	fmt.Printf("Added by: %s\n", feedUsername)
+	fmt.Printf("ID:       		 %v\n", feed.ID)
+	fmt.Printf("Name:     		 %s\n", feed.Name)
+	fmt.Printf("URL:      		 %s\n", feed.Url)
+	fmt.Printf("Added by: 		 %s\n", feedUsername)
+	fmt.Printf("Last Fetched At: %v\n", feed.LastFetched.Time)
 }

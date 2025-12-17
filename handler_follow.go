@@ -7,7 +7,7 @@ import (
 	"github.com/Gussy97/gator/internal/database"
 )
 
-func handlerFollow(s *state, cmd command) error {
+func handlerFollow(s *state, cmd command, user database.User) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <url>", cmd.Name)
 	}
@@ -16,11 +16,6 @@ func handlerFollow(s *state, cmd command) error {
 	feed, err := s.db.GetFeedByURL(context.Background(), url)
 	if err != nil {
 		return fmt.Errorf("error getting feed: %w", err)
-	}
-
-	user, err := s.db.GetUserByUsername(context.Background(), s.config.CurrentUserName)
-	if err != nil {
-		return fmt.Errorf("error getting user: %w", err)
 	}
 
 	feed_follow, err := s.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
